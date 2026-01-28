@@ -1,5 +1,4 @@
 // import dependencies, Note model
-const jwt = require('jsonwebtoken');
 const Note = require('../models/Note');
 
 //GET all notes

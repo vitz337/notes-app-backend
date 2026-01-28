@@ -22,11 +22,17 @@ exports.registerUser = async (req, res) => {
         const user = await User.create({ email, password });
         //attach token
         const token = generateToken(user._id);
-        res.status(200).json({ token });
+        res.status(201).json({ token });
     } catch(err) {
-        res.status(401).json({ message: 'Unauthorized.' });
-    }
-};
+        console.error('REGISTER ERROR FULL:', err);
+        console.error('MESSAGE:', err.message);
+        console.error('CODE:', err.code);
+        return res.status(500).json({
+            message: err.message,
+            code: err.code,
+  });
+}
+}
 
 //login
 exports.loginUser = async (req, res) => {
